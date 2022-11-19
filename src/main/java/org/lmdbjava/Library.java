@@ -138,7 +138,7 @@ final class Library {
       if (!dir.exists() || !dir.isDirectory()) {
         throw new IllegalStateException("Invalid extraction directory " + dir);
       }
-      file = createTempFile("lmdbjava-native-library-", suffix, dir);
+      file = Files.createTempFile(dir.toPath(), "lmdbjava-native-library-", suffix).toFile();
       file.deleteOnExit();
       final ClassLoader cl = currentThread().getContextClassLoader();
       try (InputStream in = cl.getResourceAsStream(name);
